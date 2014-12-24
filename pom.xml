@@ -50,7 +50,7 @@
     <dependency>
       <groupId>net.shibboleth.idp</groupId>
       <artifactId>idp-authn-api</artifactId>
-      <version>3.0.0-beta1</version>
+      <version>3.0.0</version>
     </dependency>
   </dependencies>
   <build>
