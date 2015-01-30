@@ -20,7 +20,17 @@
 	</view-state>
 	
 	<action-state id="ExtractDuoAuthResponse">
+		<evaluate expression="ExtractDuoResponseFromForm" />
+		<evaluate expression="'proceed'"/>
 		
+		<transition to="ValidateDuoAuthResponse" />
+	</action-state>
+	
+	<action-state id="ValidateDuoAuthResponse">
+		<evaluate expression="ValidateDuoResponse"/>
+		<evaluate expression="'proceed'"/>
+		
+		<transition on="proceed" to="proceed" />
 	</action-state>
 	
 </flow>

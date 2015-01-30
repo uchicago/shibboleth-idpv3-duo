@@ -17,7 +17,8 @@
 ## environment - Spring Environment object for property resolution
 ##
 #set ($rpContext = $profileRequestContext.getSubcontext('net.shibboleth.idp.profile.context.RelyingPartyContext'))
-#set ($username = $authenticationContext.getSubcontext('net.shibboleth.idp.authn.context.UsernamePasswordContext', true).getUsername())
+#set ($duoHost = $authenticationContext.getSubcontext('edu.uchicago.identity.shibboleth.authn.duo.DuoAuthenticationContext', true).getDuoHost())
+#set ($duoRequest = $authenticationContext.getSubcontext('edu.uchicago.identity.shibboleth.authn.duo.DuoAuthenticationContext',true).getDuoRequest())
 ##
 <!DOCTYPE html>
 <html>
@@ -27,16 +28,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     	<title>#springMessageText("idp.title", "Web Login Service")</title>
 		<script src="$request.getContextPath()/DuoWeb-v1.bundled.js"></script>
-  	</head>
+		<style>
+			#duo_iframe {
+				width: 100%;
+				min-width: 304px;
+				max-width: 620px;
+				height: 330;
+			}
+		</style>  	
+	</head>
   	<body>
-	<style>
-  #duo_iframe {
-    width: 100%;
-    min-width: 304px;
-    max-width: 620px;
-    height: 330;
-  }
-</style>
 	<script>
 		Duo.init({ 'host': '$duoHost', 'sig_request':'$duoRequest', 'post_action':'$flowExecutionUrl' });
 	</script>
