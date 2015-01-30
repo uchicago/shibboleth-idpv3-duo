@@ -1,0 +1,26 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd"
+      parent="authn.abstract, authn/conditions">
+	
+	<view-state id="DisplayDuoPage" view="login">
+		<on-render>
+            <evaluate expression="environment" result="viewScope.environment" />
+            <evaluate expression="opensamlProfileRequestContext" result="viewScope.profileRequestContext" />
+            <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.authn.context.AuthenticationContext))" result="viewScope.authenticationContext" />
+            <evaluate expression="authenticationContext.getSubcontext(T(net.shibboleth.idp.ui.context.RelyingPartyUIContext))" result="viewScope.rpUIContext" />
+            <evaluate expression="authenticationContext.getSubcontext(T(net.shibboleth.idp.authn.context.AuthenticationErrorContext))" result="viewScope.authenticationErrorContext" />
+            <evaluate expression="authenticationContext.getSubcontext(T(net.shibboleth.idp.authn.context.AuthenticationWarningContext))" result="viewScope.authenticationWarningContext" />
+            <evaluate expression="authenticationContext.getSubcontext(T(net.shibboleth.idp.authn.context.LDAPResponseContext))" result="viewScope.ldapResponseContext" />
+            <evaluate expression="T(net.shibboleth.utilities.java.support.codec.HTMLEncoder)" result="viewScope.encoder" />
+            <evaluate expression="flowRequestContext.getExternalContext().getNativeRequest()" result="viewScope.request" />
+            <evaluate expression="flowRequestContext.getExternalContext().getNativeResponse()" result="viewScope.response" />
+        </on-render>
+		<transition on="proceed" to="ExtractDuoAuthResponse">
+	</view-state>
+	
+	<action-state id="ExtractDuoAuthResponse">
+		
+	</action-state>
+	
+</flow>
