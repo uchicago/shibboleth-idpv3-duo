@@ -12,4 +12,6 @@ Duo-Web-v1-bundled.js goes to the war
 
 duo-authn-flow.xml goes to conf/flows
 
+edit `conf/idp.properties` and add to the values of the `idp.additionalProperties` property the value `conf/duo.properties`
+
 To be continued...
